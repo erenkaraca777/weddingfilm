@@ -53,465 +53,674 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --gold: #C9933A;
-      --gold-light: #E8B86D;
-      --gold-pale: #FFF8EE;
-      --gold-muted: #F5E6CC;
-      --dark: #1A1108;
-      --dark-mid: #2E1F0A;
-      --cream: #FFFDF8;
-      --text: #2E1F0A;
-      --text-soft: #7A6040;
-      --white: #FFFFFF;
-      --shadow: 0 8px 32px rgba(26,17,8,0.10);
-      --shadow-lg: 0 20px 60px rgba(26,17,8,0.18);
+      --cream:     #FFFDF9;
+      --white:     #FFFFFF;
+      --rose:      #E9D8C7;
+      --rose-pale: #F5EDE4;
+      --gold:      #D4A373;
+      --gold-dark: #B8865A;
+      --anthracite:#2D2D2D;
+      --mid:       #6B6060;
+      --light:     #A89A90;
+      --border:    rgba(212,163,115,0.18);
+      --shadow-sm: 0 4px 24px rgba(45,45,45,0.06);
+      --shadow-md: 0 12px 48px rgba(45,45,45,0.10);
+      --shadow-lg: 0 32px 80px rgba(45,45,45,0.14);
     }
 
     html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Manrope', sans-serif;
       background: var(--cream);
-      color: var(--text);
+      color: var(--anthracite);
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAV ── */
+    /* ─────────────────── TYPOGRAPHY ─────────────────── */
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+    }
+    em { font-style: italic; }
+
+    /* ─────────────────── NAVIGATION ─────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(255,253,248,0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(201,147,58,0.15);
-      padding: 14px 24px;
+      background: rgba(255, 253, 249, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 32px;
       display: flex; align-items: center; justify-content: space-between;
     }
     .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem; font-weight: 700;
-      color: var(--gold);
-      display: flex; align-items: center; gap: 8px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--anthracite);
       text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
     }
-    .nav-logo svg { width: 22px; height: 22px; }
+    .nav-logo svg { width: 18px; height: 18px; color: var(--gold); }
     .nav-cta {
-      background: linear-gradient(135deg, var(--gold), #A87830);
-      color: white; border: none; border-radius: 50px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--anthracite);
+      text-decoration: none;
+      border: 1px solid var(--anthracite);
+      border-radius: 0;
       padding: 10px 22px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.85rem; font-weight: 600;
-      cursor: pointer; text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 16px rgba(201,147,58,0.35);
+      transition: background 0.25s, color 0.25s;
     }
-    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,147,58,0.45); }
+    .nav-cta:hover {
+      background: var(--anthracite);
+      color: var(--white);
+    }
 
-    /* ── HERO ── */
+    /* ─────────────────── HERO ─────────────────── */
     .hero {
       min-height: 100svh;
-      background: linear-gradient(160deg, #1A1108 0%, #2E1F0A 60%, #4A3015 100%);
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-end;
       text-align: center;
-      padding: 100px 24px 60px;
-      position: relative; overflow: hidden;
+      padding: 0 24px 72px;
     }
     .hero-bg {
       position: absolute; inset: 0;
       background-image: url('images/wedding-reception.png');
-      background-size: cover; background-position: center;
-      opacity: 0.22;
+      background-size: cover;
+      background-position: center 30%;
+      transform: scale(1.04);
+      animation: slowZoom 14s ease-out forwards;
+    }
+    @keyframes slowZoom {
+      from { transform: scale(1.04); }
+      to   { transform: scale(1.0); }
     }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(26,17,8,0.5) 0%, rgba(26,17,8,0.85) 100%);
+      background: linear-gradient(
+        to bottom,
+        rgba(255,253,249,0.05) 0%,
+        rgba(45,45,45,0.18) 40%,
+        rgba(45,45,45,0.72) 75%,
+        rgba(20,15,10,0.88) 100%
+      );
     }
-    .hero-content { position: relative; z-index: 2; }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 640px;
+    }
     .hero-badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: rgba(201,147,58,0.15);
-      border: 1px solid rgba(201,147,58,0.4);
-      border-radius: 50px;
-      padding: 8px 18px;
-      font-size: 0.78rem; font-weight: 600;
-      color: var(--gold-light);
-      margin-bottom: 28px;
-      animation: fadeUp 0.6s ease both;
-      letter-spacing: 0.05em;
+      display: inline-block;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      animation: fadeUp 0.8s ease both;
     }
     .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 9vw, 4.2rem);
-      font-weight: 900;
-      color: white;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      animation: fadeUp 0.7s 0.1s ease both;
+      font-size: clamp(3rem, 11vw, 5.5rem);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 24px;
+      animation: fadeUp 0.9s 0.1s ease both;
     }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
+    .hero h1 em { color: var(--gold); font-style: italic; }
     .hero-sub {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.72);
-      max-width: 420px;
-      line-height: 1.7;
-      margin: 0 auto 36px;
-      animation: fadeUp 0.7s 0.2s ease both;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.68);
+      max-width: 380px;
+      margin: 0 auto 44px;
+      line-height: 1.8;
+      animation: fadeUp 0.9s 0.2s ease both;
     }
     .store-buttons {
-      display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
-      animation: fadeUp 0.7s 0.3s ease both;
-      margin-bottom: 16px;
+      display: flex; gap: 12px;
+      flex-wrap: wrap; justify-content: center;
+      animation: fadeUp 0.9s 0.3s ease both;
+      margin-bottom: 20px;
     }
     .store-btn {
       display: flex; align-items: center; gap: 10px;
-      background: white;
-      color: var(--dark);
+      background: rgba(255,253,249,0.96);
+      color: var(--anthracite);
       text-decoration: none;
-      border-radius: 14px;
-      padding: 13px 22px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: var(--shadow);
+      padding: 14px 24px;
+      border-radius: 0;
+      border: 1px solid rgba(255,253,249,0.3);
+      transition: background 0.2s, transform 0.2s;
+      backdrop-filter: blur(8px);
     }
-    .store-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-    .store-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
-    .store-btn-text { text-align: left; line-height: 1.2; }
-    .store-btn-text small { font-size: 0.65rem; opacity: 0.6; display: block; }
-    .store-btn-text strong { font-size: 0.95rem; font-weight: 600; }
+    .store-btn:hover { background: var(--white); transform: translateY(-2px); }
+    .store-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .store-btn-text { text-align: left; line-height: 1.25; }
+    .store-btn-text small {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      opacity: 0.55;
+      display: block;
+      text-transform: uppercase;
+    }
+    .store-btn-text strong {
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
     .hero-trust {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.45);
-      animation: fadeUp 0.7s 0.4s ease both;
-    }
-    .hero-phones {
-      display: flex; justify-content: center; gap: -20px;
-      margin-top: 48px;
-      animation: fadeUp 0.8s 0.5s ease both;
-    }
-    .hero-phone {
-      width: min(200px, 50vw);
-      filter: drop-shadow(0 24px 48px rgba(0,0,0,0.5));
-    }
-    .hero-phone:last-child {
-      margin-left: -40px;
-      margin-top: 30px;
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.38);
+      animation: fadeUp 0.9s 0.4s ease both;
     }
 
-    /* ── PROBLEM ── */
-    .problem {
-      padding: 80px 24px;
-      background: var(--gold-pale);
-      text-align: center;
-    }
-    .section-label {
-      font-size: 0.78rem; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
+    /* ─────────────────── SECTION COMMONS ─────────────────── */
+    .section-eyebrow {
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 14px;
+      display: block;
+      margin-bottom: 20px;
     }
     .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.7rem, 5vw, 2.5rem);
-      font-weight: 700;
-      color: var(--dark);
-      line-height: 1.2;
-      margin-bottom: 16px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      font-weight: 400;
+      color: var(--anthracite);
+      line-height: 1.1;
+      margin-bottom: 20px;
     }
     .section-sub {
-      font-size: 0.98rem;
-      color: var(--text-soft);
-      max-width: 480px;
-      margin: 0 auto;
-      line-height: 1.7;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.85;
+      max-width: 440px;
     }
+    .section-divider {
+      width: 40px; height: 1px;
+      background: var(--gold);
+      margin: 24px auto 0;
+      opacity: 0.6;
+    }
+
+    /* ─────────────────── PROBLEM ─────────────────── */
+    .problem {
+      padding: 120px 32px 120px;
+      background: var(--cream);
+      text-align: center;
+    }
+    .problem .section-sub { margin: 0 auto 64px; }
     .problem-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 16px;
-      max-width: 600px;
-      margin: 40px auto 0;
+      gap: 1px;
+      max-width: 640px;
+      margin: 0 auto;
+      background: var(--border);
+      border: 1px solid var(--border);
     }
     .problem-card {
-      background: white;
-      border-radius: 16px;
-      padding: 22px 20px;
-      display: flex; gap: 16px; align-items: flex-start;
-      border: 1px solid rgba(201,147,58,0.12);
+      background: var(--cream);
+      padding: 40px 32px;
       text-align: left;
+      transition: background 0.25s;
     }
-    .problem-icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
-    .problem-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
-    .problem-card p { font-size: 0.85rem; color: var(--text-soft); line-height: 1.55; }
+    .problem-card:hover { background: var(--rose-pale); }
+    .problem-icon {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      display: block;
+      opacity: 0.7;
+    }
+    .problem-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--anthracite);
+      margin-bottom: 10px;
+    }
+    .problem-card p {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.75;
+    }
 
-    /* ── SOLUTION ── */
+    /* ─────────────────── SOLUTION ─────────────────── */
     .solution {
-      padding: 80px 24px;
-      background: var(--dark);
+      padding: 120px 32px;
+      background: var(--anthracite);
       text-align: center;
     }
-    .solution .section-title { color: white; }
-    .solution .section-sub { color: rgba(255,255,255,0.6); }
+    .solution .section-title { color: var(--white); }
+    .solution .section-sub { color: rgba(255,255,255,0.48); margin: 0 auto 72px; }
     .solution-steps {
-      display: flex; flex-direction: column; gap: 0;
-      max-width: 480px; margin: 48px auto 0;
-      position: relative;
-    }
-    .solution-steps::before {
-      content: '';
-      position: absolute; left: 28px; top: 28px; bottom: 28px;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
+      display: flex; flex-direction: column;
+      gap: 0;
+      max-width: 520px;
+      margin: 0 auto;
     }
     .step {
-      display: flex; gap: 20px; align-items: flex-start;
-      text-align: left; padding: 0 0 36px;
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 28px;
+      align-items: start;
+      padding: 40px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      text-align: left;
     }
-    .step:last-child { padding-bottom: 0; }
+    .step:last-child { border-bottom: none; padding-bottom: 0; }
+    .step:first-child { padding-top: 0; }
     .step-num {
-      width: 56px; height: 56px; flex-shrink: 0;
-      background: linear-gradient(135deg, var(--gold), #A87830);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem; font-weight: 700; color: white;
-      box-shadow: 0 4px 16px rgba(201,147,58,0.4);
-      position: relative; z-index: 1;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: var(--gold);
+      opacity: 0.7;
+      line-height: 1;
+      padding-top: 4px;
     }
     .step h3 {
-      font-size: 1rem; font-weight: 600; color: white;
-      margin-bottom: 6px; margin-top: 14px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 10px;
     }
-    .step p { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+    .step p {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.48);
+      line-height: 1.75;
+    }
 
-    /* ── SCREENSHOTS ── */
+    /* ─────────────────── SCREENSHOTS ─────────────────── */
     .screenshots {
-      padding: 80px 0 64px;
-      background: var(--cream);
+      padding: 120px 0;
+      background: var(--rose-pale);
+      overflow: hidden;
+    }
+    .screenshots-header {
+      text-align: center;
+      padding: 0 32px;
+      margin-bottom: 64px;
     }
     .screenshots-scroll {
-      display: flex; gap: 20px;
+      display: flex;
+      gap: 28px;
       overflow-x: auto;
-      padding: 12px 32px 20px;
+      padding: 20px 48px 32px;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+      align-items: flex-end;
     }
     .screenshots-scroll::-webkit-scrollbar { display: none; }
     .screenshot-card {
       flex: 0 0 auto;
       scroll-snap-align: center;
-      width: min(200px, 54vw);
+      width: min(200px, 52vw);
       text-align: center;
+      transition: transform 0.4s ease;
     }
+    .screenshot-card:nth-child(even) {
+      transform: translateY(-20px);
+    }
+    .screenshot-card:hover { transform: translateY(-28px) scale(1.02); }
+    .screenshot-card:nth-child(even):hover { transform: translateY(-40px) scale(1.02); }
     .screenshot-card img {
-      width: 100%; border-radius: 20px;
+      width: 100%;
+      border-radius: 28px;
       box-shadow: var(--shadow-lg);
-      transition: transform 0.3s;
     }
-    .screenshot-card:hover img { transform: scale(1.04) translateY(-4px); }
     .screenshot-label {
-      margin-top: 12px;
-      font-size: 0.8rem; font-weight: 600;
-      color: var(--text-soft);
+      margin-top: 16px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light);
     }
     .scroll-hint {
-      text-align: center; font-size: 0.75rem;
-      color: var(--text-soft); opacity: 0.5; margin-top: 8px;
+      text-align: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--light);
+      margin-top: 8px;
+      opacity: 0.6;
     }
 
-    /* ── EMOTIONAL ── */
+    /* ─────────────────── EMOTIONAL ─────────────────── */
     .emotional {
-      padding: 80px 24px;
-      background: linear-gradient(135deg, var(--gold-pale) 0%, #FFF0D6 100%);
-      text-align: center;
+      padding: 0;
+      background: var(--cream);
+      overflow: hidden;
+    }
+    .emotional-image-wrap {
+      position: relative;
+      width: 100%;
+      height: min(520px, 68vw);
+      overflow: hidden;
     }
     .emotional-img {
-      width: min(360px, 90vw);
-      border-radius: 24px;
-      margin: 0 auto 40px;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
       display: block;
-      box-shadow: var(--shadow-lg);
     }
-    .emotional h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 6vw, 2.6rem);
-      font-weight: 700; color: var(--dark);
-      margin-bottom: 18px; line-height: 1.2;
+    .emotional-image-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, var(--cream) 100%);
     }
-    .emotional h2 em { font-style: italic; color: var(--gold); }
-    .emotional p {
-      font-size: 1rem; color: var(--text-soft);
-      max-width: 420px; margin: 0 auto 32px;
-      line-height: 1.75;
+    .emotional-content {
+      padding: 56px 32px 100px;
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .emotional-content h2 {
+      font-size: clamp(2.4rem, 8vw, 4rem);
+      margin-bottom: 20px;
+    }
+    .emotional-content h2 em { color: var(--gold); }
+    .emotional-content p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.85;
+      margin-bottom: 48px;
+    }
+    .emotional-content .store-buttons .store-btn {
+      background: var(--anthracite);
+      color: var(--white);
+      border-color: var(--anthracite);
+    }
+    .emotional-content .store-buttons .store-btn:hover {
+      background: #1a1a1a;
     }
 
-    /* ── HIGHLIGHT VIDEO ── */
+    /* ─────────────────── HIGHLIGHT VIDEO ─────────────────── */
     .highlight {
-      padding: 80px 24px;
-      background: var(--dark-mid);
+      padding: 120px 32px;
+      background: var(--rose-pale);
       text-align: center;
     }
-    .highlight .section-title { color: white; margin-bottom: 12px; }
-    .highlight .section-sub { color: rgba(255,255,255,0.6); margin-bottom: 40px; }
+    .highlight .section-sub { margin: 0 auto 64px; }
     .video-mockup {
-      width: min(360px, 90vw);
-      margin: 0 auto;
-      background: #0D0A05;
-      border-radius: 20px;
+      width: min(400px, 90vw);
+      margin: 0 auto 64px;
+      background: var(--anthracite);
+      border-radius: 16px;
       aspect-ratio: 16/9;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      border: 1px solid rgba(201,147,58,0.2);
-      box-shadow: var(--shadow-lg);
       position: relative; overflow: hidden;
+      box-shadow: var(--shadow-lg);
     }
     .video-mockup::before {
       content: '';
       position: absolute; inset: 0;
       background-image: url('images/wedding-guests.png');
       background-size: cover; background-position: center;
-      opacity: 0.35;
+      opacity: 0.28;
     }
     .play-btn {
-      width: 64px; height: 64px;
-      background: rgba(201,147,58,0.9);
+      width: 60px; height: 60px;
+      background: rgba(255,253,249,0.15);
+      border: 1.5px solid rgba(255,253,249,0.4);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       position: relative; z-index: 1;
       cursor: pointer;
-      transition: transform 0.2s, background 0.2s;
-      box-shadow: 0 0 0 12px rgba(201,147,58,0.15);
+      transition: background 0.25s, transform 0.25s;
+      backdrop-filter: blur(4px);
     }
-    .play-btn:hover { transform: scale(1.08); background: var(--gold); }
-    .play-btn svg { width: 28px; height: 28px; fill: white; margin-left: 4px; }
+    .play-btn:hover { background: rgba(212,163,115,0.5); transform: scale(1.06); }
+    .play-btn svg { width: 22px; height: 22px; fill: white; margin-left: 3px; }
     .video-label {
       position: relative; z-index: 1;
-      margin-top: 14px;
-      font-size: 0.82rem; color: rgba(255,255,255,0.6);
-      font-style: italic;
+      margin-top: 12px;
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
     }
     .highlight-features {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 14px; max-width: 480px;
-      margin: 40px auto 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      max-width: 480px;
+      margin: 0 auto;
+      background: var(--border);
+      border: 1px solid var(--border);
     }
     .hf-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(201,147,58,0.15);
-      border-radius: 14px;
-      padding: 18px 16px;
+      background: var(--cream);
+      padding: 32px 24px;
       text-align: left;
+      transition: background 0.25s;
     }
-    .hf-card .hf-icon { font-size: 1.4rem; margin-bottom: 8px; display: block; }
-    .hf-card h4 { font-size: 0.88rem; font-weight: 600; color: white; margin-bottom: 4px; }
-    .hf-card p { font-size: 0.78rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
+    .hf-card:hover { background: var(--white); }
+    .hf-icon { font-size: 1.1rem; display: block; margin-bottom: 14px; opacity: 0.65; }
+    .hf-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--anthracite);
+      margin-bottom: 6px;
+    }
+    .hf-card p {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.65;
+    }
 
-    /* ── SOCIAL PROOF ── */
+    /* ─────────────────── SOCIAL PROOF ─────────────────── */
     .social-proof {
-      padding: 80px 24px;
+      padding: 120px 32px;
       background: var(--cream);
       text-align: center;
     }
     .stats-row {
-      display: flex; justify-content: center; gap: 32px;
-      flex-wrap: wrap; margin: 40px auto 0;
-      max-width: 560px;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      max-width: 480px;
+      margin: 48px auto 80px;
+      border: 1px solid var(--border);
     }
     .stat {
-      text-align: center;
+      flex: 1;
+      padding: 32px 16px;
+      border-right: 1px solid var(--border);
     }
+    .stat:last-child { border-right: none; }
     .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem; font-weight: 900;
-      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 400;
+      color: var(--gold-dark);
       display: block;
+      line-height: 1;
+      margin-bottom: 8px;
     }
     .stat-label {
-      font-size: 0.82rem; color: var(--text-soft);
+      font-size: 0.68rem;
       font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light);
     }
     .reviews {
-      display: flex; flex-direction: column; gap: 16px;
-      max-width: 560px; margin: 48px auto 0;
+      display: flex; flex-direction: column;
+      gap: 24px;
+      max-width: 560px;
+      margin: 0 auto;
     }
     .review-card {
-      background: white;
-      border-radius: 18px;
-      padding: 24px 22px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 36px 32px;
       text-align: left;
-      border: 1px solid rgba(201,147,58,0.12);
-      box-shadow: var(--shadow);
+      transition: box-shadow 0.25s;
     }
-    .review-stars { color: var(--gold); font-size: 1rem; margin-bottom: 10px; }
-    .review-text { font-size: 0.92rem; color: var(--text); line-height: 1.65; margin-bottom: 14px; font-style: italic; }
-    .review-author { font-size: 0.8rem; font-weight: 600; color: var(--text-soft); }
+    .review-card:hover { box-shadow: var(--shadow-md); }
+    .review-stars {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .review-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--anthracite);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .review-author {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--light);
+      text-transform: uppercase;
+    }
 
-    /* ── FINAL CTA ── */
+    /* ─────────────────── FINAL CTA ─────────────────── */
     .final-cta {
-      padding: 88px 24px;
-      background: linear-gradient(160deg, #1A1108 0%, #2E1F0A 100%);
+      padding: 140px 32px;
+      background: var(--anthracite);
       text-align: center;
       position: relative; overflow: hidden;
     }
     .final-cta::before {
       content: '';
-      position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(201,147,58,0.12) 0%, transparent 65%);
+      position: absolute;
+      inset: 0;
+      background-image: url('images/wedding-guests.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.06;
     }
     .final-cta h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 7vw, 3.2rem);
-      font-weight: 900; color: white;
-      margin-bottom: 16px; position: relative;
-      line-height: 1.15;
+      font-size: clamp(2.4rem, 8vw, 4.4rem);
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 20px;
+      position: relative;
     }
-    .final-cta h2 em { font-style: italic; color: var(--gold-light); }
+    .final-cta h2 em { color: var(--gold); font-style: italic; }
     .final-cta p {
-      color: rgba(255,255,255,0.6);
-      font-size: 1rem; max-width: 380px;
-      margin: 0 auto 36px;
-      line-height: 1.65; position: relative;
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+      max-width: 360px;
+      margin: 0 auto 52px;
+      line-height: 1.85;
+      position: relative;
     }
-    .final-cta .store-buttons { position: relative; margin-bottom: 20px; }
-    .final-cta-trust { font-size: 0.78rem; color: rgba(255,255,255,0.35); position: relative; }
+    .final-cta .store-buttons {
+      position: relative;
+      margin-bottom: 28px;
+    }
+    .final-cta .store-btn {
+      background: rgba(255,253,249,0.06);
+      color: var(--white);
+      border: 1px solid rgba(255,253,249,0.2);
+    }
+    .final-cta .store-btn:hover {
+      background: rgba(255,253,249,0.12);
+    }
+    .final-cta-trust {
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.22);
+      position: relative;
+      text-transform: uppercase;
+    }
 
-    /* ── FOOTER ── */
+    /* ─────────────────── FOOTER ─────────────────── */
     footer {
-      background: var(--dark);
-      color: rgba(255,255,255,0.4);
+      background: #1e1e1e;
+      color: rgba(255,255,255,0.28);
       text-align: center;
-      padding: 24px;
-      font-size: 0.78rem;
+      padding: 28px;
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
     }
-    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
-    footer a:hover { color: var(--gold-light); }
+    footer a {
+      color: rgba(255,255,255,0.38);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--gold); }
 
-    /* ── ANIMATIONS ── */
+    /* ─────────────────── ANIMATIONS ─────────────────── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
+      from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.8s cubic-bezier(0.16,1,0.3,1);
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.97);
+      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
 
-    /* ── DESKTOP ── */
+    /* ─────────────────── DESKTOP ─────────────────── */
     @media (min-width: 640px) {
       .problem-grid { grid-template-columns: 1fr 1fr; }
-      .problem-grid .problem-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+      .highlight-features { grid-template-columns: repeat(4, 1fr); max-width: 720px; }
+      .stats-row { max-width: 560px; }
     }
     @media (min-width: 900px) {
-      .highlight-features { grid-template-columns: repeat(4, 1fr); max-width: 720px; }
+      .emotional-image-wrap { height: 580px; }
     }
   </style>
 </head>
@@ -520,7 +729,9 @@
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/>
+    </svg>
     Your Wedding Film
   </a>
   <a href="#download" class="nav-cta">Kostenlos laden</a>
@@ -531,79 +742,70 @@
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-badge">💍 Die Hochzeits-App für Deutschland</div>
-    <h1>Eure Hochzeit.<br>Aus <em>jedem</em> Blickwinkel.</h1>
-    <p class="hero-sub">Alle Fotos und Videos eurer Gäste – automatisch gesammelt, für immer bewahrt. Erstellt euer persönliches Highlight-Video.</p>
+    <span class="hero-badge">💍 Die Hochzeits-App für Deutschland</span>
+    <h1>Eure Hochzeit.<br>Aus <em>jedem</em><br>Blickwinkel.</h1>
+    <p class="hero-sub">Erlebt eure Hochzeit am nächsten Morgen durch die Augen aller Gäste.</p>
     <div class="store-buttons" id="download">
       <a href="https://apps.apple.com/de/app/your-wedding-film/id6760378628" class="store-btn" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="#1A1108"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#2D2D2D"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         <div class="store-btn-text"><small>Laden im</small><strong>App Store</strong></div>
       </a>
       <a href="https://play.google.com/store/apps/details?id=com.lorenzovideo.weddingapp" class="store-btn" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="#1A1108"><path d="M3.18 23.76a2 2 0 0 0 2.05-.18l11.67-6.76-2.55-2.56L3.18 23.76zm16.29-10.5L17.13 12l2.34-1.26 2.07 1.19a1.24 1.24 0 0 1 0 2.14l-2.07 1.19zM3.18.24L14.35 7l-2.55 2.56L3.18.42A2 2 0 0 0 3.18.24zm11.66 9.27L3.18.24a2 2 0 0 0-2.05.18A2 2 0 0 0 0 2v20a2 2 0 0 0 1.13 1.8 2 2 0 0 0 2.05-.18l11.66-6.79-2.55-2.56 2.55-2.56z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#2D2D2D"><path d="M3.18 23.76a2 2 0 0 0 2.05-.18l11.67-6.76-2.55-2.56L3.18 23.76zm16.29-10.5L17.13 12l2.34-1.26 2.07 1.19a1.24 1.24 0 0 1 0 2.14l-2.07 1.19zM3.18.24L14.35 7l-2.55 2.56L3.18.42A2 2 0 0 0 3.18.24zm11.66 9.27L3.18.24a2 2 0 0 0-2.05.18A2 2 0 0 0 0 2v20a2 2 0 0 0 1.13 1.8 2 2 0 0 0 2.05-.18l11.66-6.79-2.55-2.56 2.55-2.56z"/></svg>
         <div class="store-btn-text"><small>Jetzt bei</small><strong>Google Play</strong></div>
       </a>
     </div>
-    <p class="hero-trust">⭐ 4.9 · Kostenlos · Keine versteckten Kosten</p>
-    <div class="hero-phones">
-      <img src="images/screen-welcome.png" alt="Your Wedding Film App Startseite" class="hero-phone" />
-      <img src="images/screen-home.png" alt="Your Wedding Film App Übersicht" class="hero-phone" />
-    </div>
+    <p class="hero-trust">Kostenlos &nbsp;·&nbsp; Keine versteckten Kosten &nbsp;·&nbsp; 4.9 ★</p>
   </div>
 </section>
 
 <!-- PROBLEM -->
 <section class="problem">
-  <p class="section-label reveal">Das kennt ihr</p>
-  <h2 class="section-title reveal">Schöne Momente – die einfach verschwinden.</h2>
+  <span class="section-eyebrow reveal">Das kennt ihr</span>
+  <h2 class="section-title reveal">Schöne Momente –<br>die einfach verschwinden.</h2>
   <p class="section-sub reveal">Eure Gäste haben Hunderte unvergessliche Fotos gemacht. Aber die landen auf fremden Smartphones und ihr seht sie nie wieder.</p>
-  <div class="problem-grid">
+  <div class="section-divider reveal"></div>
+  <div class="problem-grid" style="margin-top: 56px;">
     <div class="problem-card reveal">
-      <div class="problem-icon">📱</div>
-      <div>
-        <h3>Fotos verstreut auf 80 Handys</h3>
-        <p>Jeder Gast hat Erinnerungen festgehalten – aber wie bekommt ihr sie alle zusammen?</p>
-      </div>
+      <span class="problem-icon">📱</span>
+      <h3>Fotos verstreut auf 80 Handys</h3>
+      <p>Jeder Gast hat Erinnerungen festgehalten – aber wie bekommt ihr sie alle zusammen?</p>
     </div>
     <div class="problem-card reveal">
-      <div class="problem-icon">😔</div>
-      <div>
-        <h3>Die besten Momente verpasst</h3>
-        <p>Ihr ward beim Tanzen – und habt nie gesehen, was gleichzeitig am Buffet passierte.</p>
-      </div>
+      <span class="problem-icon">😔</span>
+      <h3>Die besten Momente verpasst</h3>
+      <p>Ihr ward beim Tanzen – und habt nie gesehen, was gleichzeitig am Buffet passierte.</p>
     </div>
     <div class="problem-card reveal">
-      <div class="problem-icon">💾</div>
-      <div>
-        <h3>Kein Gesamtbild</h3>
-        <p>Der Fotograf fängt nicht alles ein. Die spontanen Lacher, die heimlichen Tränen – die fehlen.</p>
-      </div>
+      <span class="problem-icon">💾</span>
+      <h3>Kein Gesamtbild</h3>
+      <p>Der Fotograf fängt nicht alles ein. Die spontanen Lacher, die heimlichen Tränen – die fehlen.</p>
     </div>
   </div>
 </section>
 
 <!-- SOLUTION -->
 <section class="solution">
-  <p class="section-label reveal" style="color: var(--gold-light);">Die Lösung</p>
-  <h2 class="section-title reveal">So einfach funktioniert's.</h2>
-  <p class="section-sub reveal">In drei Schritten zur perfekten Hochzeits-Erinnerung – ganz ohne Technik-Stress.</p>
+  <span class="section-eyebrow reveal" style="color: var(--gold);">Die Lösung</span>
+  <h2 class="section-title reveal">So einfach<br>funktioniert's.</h2>
+  <p class="section-sub reveal">In drei Schritten zur perfekten Hochzeits-Erinnerung.</p>
   <div class="solution-steps">
     <div class="step reveal">
-      <div class="step-num">1</div>
+      <div class="step-num">01</div>
       <div>
         <h3>App herunterladen & QR-Code erstellen</h3>
         <p>Registriert euch, wählt euer Design und erhaltet in Sekunden euren persönlichen Hochzeits-QR-Code.</p>
       </div>
     </div>
     <div class="step reveal">
-      <div class="step-num">2</div>
+      <div class="step-num">02</div>
       <div>
         <h3>Gäste scannen & laden hoch</h3>
         <p>Legt den QR-Code auf die Tische oder druckt ihn auf Karten. Gäste scannen und laden direkt hoch – kein Login nötig.</p>
       </div>
     </div>
     <div class="step reveal">
-      <div class="step-num">3</div>
+      <div class="step-num">03</div>
       <div>
         <h3>Highlight-Video erstellen</h3>
         <p>Alle Erinnerungen an einem Ort. Wählt eure Lieblingsmomente und erstellt euer persönliches Hochzeitsvideo in 4K.</p>
@@ -614,56 +816,63 @@
 
 <!-- SCREENSHOTS -->
 <section class="screenshots">
-  <p class="section-label reveal" style="text-align:center">Die App</p>
-  <h2 class="section-title reveal" style="text-align:center;padding:0 24px">Alles in einer App.</h2>
+  <div class="screenshots-header">
+    <span class="section-eyebrow reveal">Die App</span>
+    <h2 class="section-title reveal">Alles in einer App.</h2>
+  </div>
   <div class="screenshots-scroll">
     <div class="screenshot-card">
       <img src="images/screen-welcome.png" alt="Willkommensscreen" loading="lazy" />
-      <p class="screenshot-label">👋 Willkommen</p>
+      <p class="screenshot-label">Willkommen</p>
     </div>
     <div class="screenshot-card">
       <img src="images/screen-home.png" alt="Startseite mit QR-Code" loading="lazy" />
-      <p class="screenshot-label">📲 QR-Code</p>
+      <p class="screenshot-label">QR-Code</p>
     </div>
     <div class="screenshot-card">
       <img src="images/screen-album.png" alt="Hochzeitsalbum" loading="lazy" />
-      <p class="screenshot-label">📸 Album</p>
+      <p class="screenshot-label">Album</p>
     </div>
     <div class="screenshot-card">
       <img src="images/screen-vorlagen.png" alt="Video-Vorlagen" loading="lazy" />
-      <p class="screenshot-label">🎬 Vorlagen</p>
+      <p class="screenshot-label">Vorlagen</p>
     </div>
     <div class="screenshot-card">
       <img src="images/screen-videos.png" alt="Meine Videos" loading="lazy" />
-      <p class="screenshot-label">🎥 Videos</p>
+      <p class="screenshot-label">Videos</p>
     </div>
   </div>
-  <p class="scroll-hint">← Wischen zum Entdecken →</p>
+  <p class="scroll-hint">Wischen zum Entdecken</p>
 </section>
 
 <!-- EMOTIONAL -->
 <section class="emotional">
-  <img src="images/couple-tablet.png" alt="Brautpaar schaut gemeinsam Hochzeitsfotos an" class="emotional-img reveal" loading="lazy" />
-  <h2 class="reveal">Der Morgen danach.<br><em>Unvergesslich.</em></h2>
-  <p class="reveal">Stellt euch vor: Ihr liegt noch im Bett, Brautkleid liegt über dem Stuhl – und scrollt gemeinsam durch Hunderte Momente, die ihr selbst nie gesehen habt. Lacht, weint, staunt. Das ist Your Wedding Film.</p>
-  <div class="store-buttons reveal">
-    <a href="https://apps.apple.com/de/app/your-wedding-film/id6760378628" class="store-btn" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="#1A1108"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-      <div class="store-btn-text"><small>Laden im</small><strong>App Store</strong></div>
-    </a>
-    <a href="https://play.google.com/store/apps/details?id=com.lorenzovideo.weddingapp" class="store-btn" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="#1A1108"><path d="M3.18 23.76a2 2 0 0 0 2.05-.18l11.67-6.76-2.55-2.56L3.18 23.76zm16.29-10.5L17.13 12l2.34-1.26 2.07 1.19a1.24 1.24 0 0 1 0 2.14l-2.07 1.19zM3.18.24L14.35 7l-2.55 2.56L3.18.42A2 2 0 0 0 3.18.24zm11.66 9.27L3.18.24a2 2 0 0 0-2.05.18A2 2 0 0 0 0 2v20a2 2 0 0 0 1.13 1.8 2 2 0 0 0 2.05-.18l11.66-6.79-2.55-2.56 2.55-2.56z"/></svg>
-      <div class="store-btn-text"><small>Jetzt bei</small><strong>Google Play</strong></div>
-    </a>
+  <div class="emotional-image-wrap reveal-scale">
+    <img src="images/couple-tablet.png" alt="Brautpaar schaut gemeinsam Hochzeitsfotos an" class="emotional-img" loading="lazy" />
+  </div>
+  <div class="emotional-content">
+    <span class="section-eyebrow reveal">Der Morgen danach</span>
+    <h2 class="reveal">Der Morgen danach.<br><em>Unvergesslich.</em></h2>
+    <p class="reveal">Stellt euch vor: Ihr liegt noch im Bett, Brautkleid liegt über dem Stuhl – und scrollt gemeinsam durch Hunderte Momente, die ihr selbst nie gesehen habt. Lacht, weint, staunt. Das ist Your Wedding Film.</p>
+    <div class="store-buttons reveal">
+      <a href="https://apps.apple.com/de/app/your-wedding-film/id6760378628" class="store-btn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <div class="store-btn-text"><small>Laden im</small><strong>App Store</strong></div>
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.lorenzovideo.weddingapp" class="store-btn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76a2 2 0 0 0 2.05-.18l11.67-6.76-2.55-2.56L3.18 23.76zm16.29-10.5L17.13 12l2.34-1.26 2.07 1.19a1.24 1.24 0 0 1 0 2.14l-2.07 1.19zM3.18.24L14.35 7l-2.55 2.56L3.18.42A2 2 0 0 0 3.18.24zm11.66 9.27L3.18.24a2 2 0 0 0-2.05.18A2 2 0 0 0 0 2v20a2 2 0 0 0 1.13 1.8 2 2 0 0 0 2.05-.18l11.66-6.79-2.55-2.56 2.55-2.56z"/></svg>
+        <div class="store-btn-text"><small>Jetzt bei</small><strong>Google Play</strong></div>
+      </a>
+    </div>
   </div>
 </section>
 
 <!-- HIGHLIGHT VIDEO -->
 <section class="highlight">
-  <p class="section-label reveal" style="color: var(--gold-light);">Highlight-Video</p>
+  <span class="section-eyebrow reveal">Highlight-Video</span>
   <h2 class="section-title reveal">Euer Film.<br>Euer Moment. Für immer.</h2>
   <p class="section-sub reveal">Aus allen gesammelten Aufnahmen erstellt ihr mit wenigen Klicks ein professionelles Hochzeitsvideo in 4K Ultra HD.</p>
-  <div class="video-mockup reveal">
+  <div class="video-mockup reveal-scale">
     <div class="play-btn">
       <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
     </div>
@@ -695,7 +904,7 @@
 
 <!-- SOCIAL PROOF -->
 <section class="social-proof">
-  <p class="section-label reveal">Vertrauen</p>
+  <span class="section-eyebrow reveal">Vertrauen</span>
   <h2 class="section-title reveal">100+ glückliche Paare.<br>Unzählige Erinnerungen.</h2>
   <div class="stats-row reveal">
     <div class="stat">
@@ -704,28 +913,28 @@
     </div>
     <div class="stat">
       <span class="stat-num">4.9★</span>
-      <span class="stat-label">App Store Bewertung</span>
+      <span class="stat-label">App Store</span>
     </div>
     <div class="stat">
       <span class="stat-num">4K</span>
-      <span class="stat-label">Ultra HD Qualität</span>
+      <span class="stat-label">Ultra HD</span>
     </div>
   </div>
   <div class="reviews">
     <div class="review-card reveal">
-      <div class="review-stars">★★★★★</div>
+      <div class="review-stars">★ ★ ★ ★ ★</div>
       <p class="review-text">"Wir hatten 87 Gäste – und am nächsten Morgen über 600 Fotos in der App. Momente, die wir selbst nie gesehen hätten. Absolut magisch."</p>
-      <span class="review-author">— Julia & Markus, verheiratet Mai 2026</span>
+      <span class="review-author">Julia & Markus &nbsp;·&nbsp; Mai 2026</span>
     </div>
     <div class="review-card reveal">
-      <div class="review-stars">★★★★★</div>
+      <div class="review-stars">★ ★ ★ ★ ★</div>
       <p class="review-text">"Der QR-Code auf den Tischen war der Gesprächsstarter des Abends. Alle haben mitgemacht, auch Oma! Das Highlight-Video hat uns zu Tränen gerührt."</p>
-      <span class="review-author">— Sarah & Tom, verheiratet April 2026</span>
+      <span class="review-author">Sarah & Tom &nbsp;·&nbsp; April 2026</span>
     </div>
     <div class="review-card reveal">
-      <div class="review-stars">★★★★★</div>
+      <div class="review-stars">★ ★ ★ ★ ★</div>
       <p class="review-text">"Einfachste App die ich je benutzt habe. Setup in 5 Minuten, und unsere Gäste haben intuitiv alles verstanden. Klare Empfehlung!"</p>
-      <span class="review-author">— Lena & Florian, verheiratet März 2026</span>
+      <span class="review-author">Lena & Florian &nbsp;·&nbsp; März 2026</span>
     </div>
   </div>
 </section>
@@ -736,11 +945,11 @@
   <p class="reveal">Jetzt kostenlos herunterladen und noch heute euren persönlichen QR-Code erstellen.</p>
   <div class="store-buttons reveal">
     <a href="https://apps.apple.com/de/app/your-wedding-film/id6760378628" class="store-btn" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="#1A1108"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <svg viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
       <div class="store-btn-text"><small>Laden im</small><strong>App Store</strong></div>
     </a>
     <a href="https://play.google.com/store/apps/details?id=com.lorenzovideo.weddingapp" class="store-btn" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="#1A1108"><path d="M3.18 23.76a2 2 0 0 0 2.05-.18l11.67-6.76-2.55-2.56L3.18 23.76zm16.29-10.5L17.13 12l2.34-1.26 2.07 1.19a1.24 1.24 0 0 1 0 2.14l-2.07 1.19zM3.18.24L14.35 7l-2.55 2.56L3.18.42A2 2 0 0 0 3.18.24zm11.66 9.27L3.18.24a2 2 0 0 0-2.05.18A2 2 0 0 0 0 2v20a2 2 0 0 0 1.13 1.8 2 2 0 0 0 2.05-.18l11.66-6.79-2.55-2.56 2.55-2.56z"/></svg>
+      <svg viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76a2 2 0 0 0 2.05-.18l11.67-6.76-2.55-2.56L3.18 23.76zm16.29-10.5L17.13 12l2.34-1.26 2.07 1.19a1.24 1.24 0 0 1 0 2.14l-2.07 1.19zM3.18.24L14.35 7l-2.55 2.56L3.18.42A2 2 0 0 0 3.18.24zm11.66 9.27L3.18.24a2 2 0 0 0-2.05.18A2 2 0 0 0 0 2v20a2 2 0 0 0 1.13 1.8 2 2 0 0 0 2.05-.18l11.66-6.79-2.55-2.56 2.55-2.56z"/></svg>
       <div class="store-btn-text"><small>Jetzt bei</small><strong>Google Play</strong></div>
     </a>
   </div>
@@ -756,8 +965,8 @@
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal, .reveal-scale').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
